@@ -1,0 +1,14 @@
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\UserStore.DAL.dll.config
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\UserStore.DAL.dll
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\UserStore.DAL.pdb
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\EntityFramework.dll
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\EntityFramework.SqlServer.dll
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\EntityFramework.xml
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\EntityFramework.SqlServer.xml
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.csprojResolveAssemblyReference.cache
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.dll
+S:\Программирование\VS\MyBlog\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.pdb
