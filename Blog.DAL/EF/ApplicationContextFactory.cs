@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.DAL.EF
 {
-    class ApplicationContextFactory : IDbContextFactory<ApplicationContext>
+    public class ApplicationContextFactory : IDbContextFactory<ApplicationContext>
     {
         public ApplicationContext Create()
         {

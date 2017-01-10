@@ -7,7 +7,7 @@ using Blog.DAL.Entities;
 
 namespace Blog.DAL.Interfaces
 {
-    public interface IPostRepository : IRepository<Post>
+    public interface IPostRepository : IGenericRepository<Post>
     {
         List<Post> GetForPage(int skip, int take);
     }

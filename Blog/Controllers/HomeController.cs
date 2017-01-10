@@ -6,8 +6,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 using Blog.Models;
-using Blog.BLL.Interfaces;
-using Blog.BLL.DTO;
+using Blog.Services.Interfaces;
+using Blog.ViewModels;
 
 namespace Blog.Controllers
 {
@@ -27,80 +27,58 @@ namespace Blog.Controllers
         [HttpGet]
         public JsonResult GetPosts(int count)
         {
-            return new JsonResult() { Data = new PostsViewModel() { content = BlogService.GetNextPosts(User.Identity.GetUserId(), count), morePosts = false }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult() { Data = new ContentViewModel() { Content = BlogService.GetNextPosts(User.Identity.GetUserId(), count), MorePosts = false }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public JsonResult AddPost(PostDTO obj)
+        public JsonResult AddPost(PostViewModel obj)
         {
-            try
+            if (obj.Text == "" || obj.Topic == "" || obj.Text == null || obj.Topic == null)
             {
-                if (obj.text == "" || obj.topic == "" || obj.text == null || obj.topic == null)
-                {
-                    return Json(new { success = false, errorMessage = "Message and topic is required" });
-                }
+                return Json(new { success = false, errorMessage = "Message and topic is required" });
+            }
 
-                PostDTO pvm = BlogService.AddPost(obj.topic, obj.text, User.Identity.GetUserId());
-                return Json(new { content = pvm, success = true });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, errorMessage = ex.Message });
-            }
+            PostViewModel pvm = BlogService.AddPost(obj.Topic, obj.Text, User.Identity.GetUserId());
+            return Json(new { Content = pvm, success = true });
         }
 
         [HttpPost]
         [Authorize(Roles = "user")]
         public JsonResult AddComment(WriteCommentModel obj)
         {
-            try
+            if (obj.Text == "" || obj.Text == null)
             {
-                if (obj.text == "" || obj.text == null)
-                {
-                    return Json(new { success = false, errorMessage = "Message is required" });
-                }
-                CommentDTO cvm = BlogService.AddComment(obj.id, obj.text, User.Identity.GetUserId());
-                return Json(new { content = cvm, success = true });
+                return Json(new { success = false, errorMessage = "Message is required" });
             }
-            catch (Exception ex)
+            CommentViewModel cvm = BlogService.AddComment(obj.Id, obj.Text, User.Identity.GetUserId());
+            if (cvm == null)
             {
-                return Json(new { success = false, errorMessage = ex.Message });
+                return Json(new { success = false, errorMessage = "Post does not exist" });
             }
+            return Json(new { Content = cvm, success = true });
         }
 
         [HttpPost]
         [Authorize(Roles = "user")]
         public JsonResult DeleteComment(int id)
         {
-            try
+            if (BlogService.IsCommentAuthor(id, User.Identity.GetUserId()) || User.IsInRole("admin"))
             {
-                if (BlogService.IsCommentAuthor(id, User.Identity.GetUserId()) || User.IsInRole("admin"))
+                if (BlogService.DeleteComment(id))
                 {
-                    BlogService.DeleteComment(id);
                     return Json(new { success = true });
                 }
-                return Json(new { success = false });
             }
-            catch (Exception ex)
-            {
-                return Json(new { success = false });
-            }
+            return Json(new { success = false });
         }
 
         [HttpPost]
         [Authorize(Roles = "admin")]
         public JsonResult DeletePost(int id)
         {
-            try
-            {
-                BlogService.DeletePost(id);
-                return Json(new { success = true });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false });
-            }
+            BlogService.DeletePost(id);
+            return Json(new { success = true });
         }
     }
 }

@@ -6,17 +6,18 @@
         $scope.Posts = null;
 
         var result = BlogService.GetMessages("0").then(function (response) {
-            $scope.Posts = response.data.content;
+            console.log(response);
+            $scope.Posts = response.data.Content;
             $scope.ShowDetails = true;
         }, function () {
             alert('Error');
         });
 
         $scope.btnPostPost = function () {
-            var obj = { "topic": $scope.newTopic, "text": $scope.newMessage }
+            var obj = { "Topic": $scope.newTopic, "Text": $scope.newMessage }
             BlogService.PostMessage(obj, "AddPost").then(function (response) {
                 if (response.data.success) {
-                    $scope.Posts.unshift(response.data.content);
+                    $scope.Posts.unshift(response.data.Content);
                     $scope.newTopic = "";
                     $scope.newMessage = "";
                 }
@@ -28,12 +29,14 @@
             });
         };
 
-        $scope.btnPostComment = function (id) {
-            var res = $.grep($scope.Posts, function (p) { return p.id == id; });
-            var obj = { "id": id, "text": res[0].newCommend };
+        $scope.btnPostComment = function (Id) {
+            var res = $.grep($scope.Posts, function (p) { return p.Id == Id; });
+            var obj = { "Id": Id, "Text": res[0].newCommend };
             BlogService.PostMessage(obj, "AddComment").then(function (response) {
+                console.log(response);
+                console.log(res[0]);
                 if (response.data.success) {                    
-                    res[0].coments.push(response.data.content);
+                    res[0].Coments.push(response.data.Content);
                     res[0].newCommend = "";
                 }
                 else {
@@ -49,10 +52,10 @@
             BlogService.PostMessageWithId(commentId, "DeleteComment").then(function (response) {
                 console.log(response);
                 if (response.data.success) {
-                    var post = $.grep($scope.Posts, function (p) { return p.id == postId; });
-                    for (var i = 0; i < post[0].coments.length; i++) {
-                        if (post[0].coments[i].id == commentId)
-                            post[0].coments.splice(i, 1);
+                    var post = $.grep($scope.Posts, function (p) { return p.Id == postId; });
+                    for (var i = 0; i < post[0].Coments.length; i++) {
+                        if (post[0].Coments[i].Id == commentId)
+                            post[0].Coments.splice(i, 1);
                     }
                 }
                 else {
@@ -68,7 +71,7 @@
                 console.log(response);
                 if (response.data.success) {
                     for (var i = 0; i < $scope.Posts.length; i++) {
-                        if ($scope.Posts[i].id == postId)
+                        if ($scope.Posts[i].Id == postId)
                             $scope.Posts.splice(i, 1);
                     }
                 }
@@ -82,7 +85,7 @@
 
         $scope.btnShowMore = function () {
             BlogService.GetMessages($scope.Posts.length).then(function (response) {
-                Array.prototype.push.apply($scope.Posts, response.data.content);
+                Array.prototype.push.apply($scope.Posts, response.data.Content);
             }, function () {
                 alert('Error');
             });

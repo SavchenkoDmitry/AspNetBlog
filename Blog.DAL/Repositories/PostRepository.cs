@@ -10,56 +10,19 @@ using System.Data.Entity;
 
 namespace Blog.DAL.Repositories
 {
-    public class PostRepository : IPostRepository
+    public class PostRepository : GenericRepository<Post>, IPostRepository
     {
-        ApplicationContext db;
-        public PostRepository(ApplicationContext _db)
-        {
-            db = _db;
-            db.Posts.Load();
-        }
-        
+        public PostRepository(ApplicationContext c) : base(c)
+        { }
+
         public List<Post> GetForPage(int skip, int take)
         {
-            return db.Posts.OrderByDescending(p => p.time).Skip(skip).Take(take).ToList();
-        }
-
-        public IEnumerable<Post> GetAll()
-        {
-            return db.Posts;
-        }
-        public Post Get(int id)
-        {
-            return db.Posts.Find(id);
+            return Context.Posts.OrderByDescending(p => p.Time).Skip(skip).Take(take).ToList();
         }
         
-        public void Create(Post item)
-        {
-            db.Posts.Add(item);
-            db.SaveChanges();
-        }
-
-        public void Delete(int id)
-        {
-            Post p = Get(id);
-            if (p != null)
-            {
-                Delete(p);
-            }
-        }
-        public void Delete(Post p)
-        {
-            db.Posts.Remove(p);
-        }
-
-        public void Update(Post item)
-        {
-            db.Entry(item).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-        }
         public void Dispose()
         {
-            db.Dispose();
+            Context.Dispose();
         }
     }
 }

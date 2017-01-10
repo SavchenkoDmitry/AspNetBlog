@@ -1,0 +1,13 @@
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\Blog.ViewModels.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\Blog.ViewModels.pdb
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\Blog.DAL.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\EntityFramework.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\Blog.DAL.pdb
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\EntityFramework.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\obj\Debug\Blog.ViewModels.csprojResolveAssemblyReference.cache
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\obj\Debug\Blog.ViewModels.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.ViewModels\obj\Debug\Blog.ViewModels.pdb

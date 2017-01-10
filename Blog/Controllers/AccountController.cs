@@ -5,10 +5,10 @@ using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
 using Blog.Models;
-using Blog.BLL.DTO;
+using Blog.ViewModels;
 using System.Security.Claims;
-using Blog.BLL.Interfaces;
-using Blog.BLL.Infrastructure;
+using Blog.Services.Interfaces;
+using Blog.Services.Common;
 
 namespace Blog.Controllers
 {
@@ -39,8 +39,8 @@ namespace Blog.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserDTO userDto = new UserDTO { Email = model.Email, Password = model.Password };
-                ClaimsIdentity claim = await BlogService.Authenticate(userDto);
+                UserViewModel userVM = new UserViewModel { Email = model.Email, Password = model.Password };
+                ClaimsIdentity claim = await BlogService.Authenticate(userVM);
                 if (claim == null)
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль.");
@@ -75,13 +75,13 @@ namespace Blog.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserDTO userDto = new UserDTO
+                UserViewModel userVM = new UserViewModel
                 {
                     Email = model.Email,
                     Password = model.Password,
                     Role = "user"
                 };
-                OperationDetails operationDetails = await BlogService.CreateUser(userDto);
+                OperationDetails operationDetails = await BlogService.CreateUser(userVM);
                 if (operationDetails.Succedeed)
                     return View("SuccessRegister");
                 else

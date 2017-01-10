@@ -12,3 +12,17 @@ S:\Программирование\VS\MyBlog\Blog\Blog.DAL\bin\Debug\Blog.DAL.d
 S:\Программирование\VS\MyBlog\Blog\Blog.DAL\bin\Debug\Blog.DAL.pdb
 S:\Программирование\VS\MyBlog\Blog\Blog.DAL\obj\Debug\Blog.DAL.dll
 S:\Программирование\VS\MyBlog\Blog\Blog.DAL\obj\Debug\Blog.DAL.pdb
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\Blog.DAL.dll.config
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\Blog.DAL.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\Blog.DAL.pdb
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\EntityFramework.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\EntityFramework.SqlServer.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\EntityFramework.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\EntityFramework.SqlServer.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\obj\Debug\Blog.DAL.csprojResolveAssemblyReference.cache
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\obj\Debug\Blog.DAL.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.DAL\obj\Debug\Blog.DAL.pdb

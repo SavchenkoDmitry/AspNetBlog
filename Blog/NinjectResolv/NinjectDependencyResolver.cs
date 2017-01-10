@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Blog.BLL.Interfaces;
-using Blog.BLL.Services;
+using Blog.Services.Interfaces;
+using Blog.Services.Services;
 using Blog.DAL.Interfaces;
 using Blog.DAL.Repositories;
 
@@ -29,7 +29,6 @@ namespace Blog.NinjectResolv
         private void AddBindings()
         {
             kernel.Bind<IBlogService>().To<BlogService>();
-            kernel.Bind<IBlogUnitOfWork>().To<BlogUnitOfWork>();
         }
 
     }

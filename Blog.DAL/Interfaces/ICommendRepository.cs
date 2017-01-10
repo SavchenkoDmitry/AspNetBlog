@@ -7,7 +7,7 @@ using Blog.DAL.Entities;
 
 namespace Blog.DAL.Interfaces
 {
-    public interface ICommendRepository : IRepository<Comment>
+    public interface ICommendRepository : IGenericRepository<Comment>
     {
         List<Comment> GetInRange(List<Post> pl);
     }

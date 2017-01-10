@@ -184,9 +184,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\PostsViewModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
-    <Compile Include="Models\WriteMessageModels.cs" />
     <Compile Include="NinjectResolv\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -200,7 +198,7 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\BlogContent.js" />
+    <Content Include="Scripts\blogContent.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -248,13 +246,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Blog.BLL\Blog.BLL.csproj">
-      <Project>{d6feb224-f103-4f08-8c1a-27f869666e28}</Project>
-      <Name>Blog.BLL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Blog.DAL\Blog.DAL.csproj">
       <Project>{c67a6319-7600-4d06-b421-bd9ed727d6ad}</Project>
       <Name>Blog.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blog.Services\Blog.Services.csproj">
+      <Project>{d6feb224-f103-4f08-8c1a-27f869666e28}</Project>
+      <Name>Blog.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blog.ViewModels\Blog.ViewModels.csproj">
+      <Project>{aa10cc71-b382-48bc-a264-048416348557}</Project>
+      <Name>Blog.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

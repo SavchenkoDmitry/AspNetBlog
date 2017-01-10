@@ -1,9 +1,9 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using Blog.BLL.Services;
+using Blog.Services.Services;
 using Microsoft.AspNet.Identity;
-using Blog.BLL.Interfaces;
+using Blog.Services.Interfaces;
 
 [assembly: OwinStartup(typeof(Blog.App_Start.Startup))]
 
