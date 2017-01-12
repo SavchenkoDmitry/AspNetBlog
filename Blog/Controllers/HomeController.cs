@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity.Owin;
+﻿using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Blog.Models;
 using Blog.Services.Interfaces;
 using Blog.ViewModels;
 
@@ -24,10 +18,27 @@ namespace Blog.Controllers
             return View();
         }
 
+        public ActionResult Content()
+        {
+            return View();
+        }
+
         [HttpGet]
         public JsonResult GetPosts(int count)
         {
-            return new JsonResult() { Data = new ContentViewModel() { Content = BlogService.GetNextPosts(User.Identity.GetUserId(), count), MorePosts = false }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult() { Data = new PostPreviewListViewModel() { Previews = BlogService.GetNextPosts(User.Identity.GetUserId(), count), IsAdmin = User.IsInRole("admin"), IsUser = User.IsInRole("user") }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        [HttpGet]
+        public JsonResult GetPost(int id)
+        {
+            return new JsonResult() { Data = new { Content =  BlogService.GetPostViewModel(id, User.Identity.GetUserId()) , IsAdmin = User.IsInRole("admin"), IsUser = User.IsInRole("user")}, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        [HttpGet]
+        public JsonResult GetThemes()
+        {
+            return new JsonResult() { Data = BlogService.GetThemes(), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         [HttpPost]

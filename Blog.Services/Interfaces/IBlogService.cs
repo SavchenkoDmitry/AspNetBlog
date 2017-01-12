@@ -11,9 +11,11 @@ namespace Blog.Services.Interfaces
     {
         Task<OperationDetails> CreateUser(UserViewModel userVM);
         Task<ClaimsIdentity> Authenticate(UserViewModel userVM);
+        string[] GetThemes();
         PostViewModel AddPost(string topic, string text, string userId);
         void DeletePost(int id);
-        List<PostViewModel> GetNextPosts(string userId, int skip);
+        PostViewModel GetPostViewModel(int postId, string userId);
+        List<PostPreviewViewModel> GetNextPosts(string userId, int skip);
         CommentViewModel AddComment(int postId, string text, string userId);
         bool DeleteComment(int id);
         CommentViewModel GetCommentById(int id, string userId);

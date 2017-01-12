@@ -31,7 +31,7 @@ namespace Blog.DAL.EF
                 userManager.AddToRole(admin.Id, role2.Name);
             }
 
-            Post firstPost = new Post() { Topic = "First publication", Text = "Hello world! This is new blog.", Time = DateTime.Now, Author = admin };
+            Post firstPost = new Post() { Topic = Theme.Other, Text = "Hello world! This is new blog.", Time = DateTime.Now, Author = admin };
 
             context.Posts.Add(firstPost);
             context.SaveChanges();

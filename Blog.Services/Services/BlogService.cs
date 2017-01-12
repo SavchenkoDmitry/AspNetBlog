@@ -18,7 +18,7 @@ namespace Blog.Services.Services
 {
     public class BlogService : IBlogService
     {
-        const int PostsInOnePage = 3;
+        const int PostsInOnePage = 10;
         const string StandartRole = "user";
 
 
@@ -27,7 +27,7 @@ namespace Blog.Services.Services
         private ApplicationRoleManager roleManager;
         private PostRepository postRep;
         private CommentRepository commentRep;
-        
+
         public BlogService()
         {
             db = new ApplicationContextFactory().Create();
@@ -36,7 +36,12 @@ namespace Blog.Services.Services
             postRep = new PostRepository(db);
             commentRep = new CommentRepository(db);
             db.Posts.Load();
-            db.Comments.Load();     
+            db.Comments.Load();
+        }
+
+        public string[] GetThemes()
+        {
+            return Enum.GetNames(typeof(Theme));
         }
 
         #region user
@@ -83,35 +88,48 @@ namespace Blog.Services.Services
             {
                 comentsViewModel.Add(GetCommentViewModel(c, userId));
             }
-            return new PostViewModel() { Author = p.Author.UserName, Id = p.Id, Text = p.Text, Time = p.Time.ToString(), Topic = p.Topic, Coments = comentsViewModel };
+            return new PostViewModel() { Author = p.Author.UserName, Id = p.Id, Text = p.Text, Time = p.Time.ToString(), Topic = p.Topic.ToString(), Coments = comentsViewModel };
         }
 
-        private List<PostViewModel> GetPostViewModelList(List<Post> posts, string userId)
+        private List<PostPreviewViewModel> GetPostPreviewViewModelList(List<Post> posts, string userId)
         {
-            List<PostViewModel> postsViewModel = new List<PostViewModel>();
-            List<Comment> Comments = commentRep.GetAll().ToList().Where(c => posts.Contains(c.Post)).ToList(); ;
-
+            List<PostPreviewViewModel> postsPrevViewModel = new List<PostPreviewViewModel>();
+           
             foreach (Post p in posts)
             {
+                postsPrevViewModel.Add(new PostPreviewViewModel() { Author = p.Author.UserName, Id = p.Id, Text = p.Text, Time = p.Time.ToString(), Topic = p.Topic.ToString() });
+            }
+            return postsPrevViewModel;
+        }
+
+        public PostViewModel GetPostViewModel(int postId, string userId)
+        {
+            Post p = postRep.FindById(postId);
+            if (p != null)
+            {
+                List<Comment> Comments = commentRep.GetAll().ToList().Where(c => c.Post == p).ToList(); ;
                 List<CommentViewModel> comentsViewModel = new List<CommentViewModel>();
                 foreach (Comment c in Comments.Where(c => c.Post == p))
                 {
                     comentsViewModel.Add(GetCommentViewModel(c, userId));
                 }
-                postsViewModel.Add(new PostViewModel() { Author = p.Author.UserName, Id = p.Id, Text = p.Text, Time = p.Time.ToString(), Topic = p.Topic, Coments = comentsViewModel });
+                return new PostViewModel() { Author = p.Author.UserName, Id = p.Id, Text = p.Text, Time = p.Time.ToString(), Topic = p.Topic.ToString(), Coments = comentsViewModel };
             }
-            return postsViewModel;
+            return null;
         }
-
 
         public PostViewModel AddPost(string topic, string text, string userId)
         {
-            Post p = new Post() { Text = text, Topic = topic, Author = userManager.FindById(userId), Time = DateTime.Now };
+            Theme topicTheme;
+            if (!Enum.TryParse<Theme>(topic, true, out topicTheme))
+            {
+                topicTheme = Theme.Other;
+            }
+            Post p = new Post() { Text = text, Topic = topicTheme, Author = userManager.FindById(userId), Time = DateTime.Now };
             db.Posts.Add(p);
             postRep.Save();
             return GetDPostViewModel(p, userId);
         }
-
         public void DeletePost(int id)
         {
             Post p = db.Posts.Find(id);
@@ -127,10 +145,10 @@ namespace Blog.Services.Services
             db.SaveChangesAsync();
         }
 
-        public List<PostViewModel> GetNextPosts(string userId, int skip)
+        public List<PostPreviewViewModel> GetNextPosts(string userId, int skip)
         {
             List<Post> posts = postRep.GetForPage(skip, PostsInOnePage);
-            return GetPostViewModelList(posts, userId); ;
+            return GetPostPreviewViewModelList(posts, userId); ;
         }
 
         #endregion
@@ -168,7 +186,12 @@ namespace Blog.Services.Services
         }
         public bool IsCommentAuthor(int commentId, string authorId)
         {
-            return  commentRep.FindById(commentId).Author.Id == authorId;
+            Comment c = commentRep.FindById(commentId);
+            if (c != null)
+            {
+                return c.Author.Id == authorId;
+            }
+            return false;
         }
         private List<Comment> FindPostComments(Post p)
         {

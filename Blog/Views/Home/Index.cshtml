@@ -2,63 +2,14 @@
     ViewBag.Title = "Home Page";
 }
 @section scripts {
-    <script src="~/Scripts/blogContent.js"></script>
+    <script src="~/app/app.js"></script>
+    <script src="~/app/controllers/contentController.js"></script>
+    <script src="~/app/controllers/postController.js"></script>
+    <script src="~/app/controllers/newPostController.js"></script>
+    <script src="~/app/services/blogService.js"></script>    
 }
-<div ng-app="BlogApp">
-    <div ng-controller="ContentController" ng-init="ShowDetails=true">
-
-        @if (HttpContext.Current.User.IsInRole("admin"))
-        {
-            <hr>
-            <form name="NewPostForm">
-                <div class="form-group">
-                    <label class="col-md-2 control-label" for="Topic">Topic</label>
-                    <input class="form-control" data-val="true" id="Topic" name="Topic" type="text" value="" ng-model="newTopic" required>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label" for="Message">Message</label>
-                    <textarea class="form-control" data-val="true" id="Message" name="Message" ng-model="newMessage" required> </textarea>
-                </div>
-            </form>
-            <button class="btn btn-default" ng-click="btnPostPost()" ng-disabled="!NewPostForm.$valid">Send</button>
-            <hr>
-        }
-
-
-
-        <div ng-show="ShowDetails">
-            <ul>
-                <li ng-repeat="post in Posts" name="Post{{post.Id}}" id="Post{{post.Id}}">
-                    <div ng-bind="post.Topic"></div>
-                    <div ng-bind="post.Author"></div>
-                    <div ng-bind="post.Text"></div>
-                    <div ng-bind="post.Time"></div>
-                    @if (HttpContext.Current.User.IsInRole("admin"))
-                    {
-                        <button class="btn btn-default" ng-click="btnDeletePost(post.Id)">Delete</button>
-                    }
-                    <ul>
-                        <li ng-repeat="coment in post.Coments" name="Post{{post.Id}}.Comment{{coment.Id}}" id="Post{{post.Id}}.Comment{{coment.Id}}">
-                            <div ng-bind="coment.Author"></div>
-                            <div ng-bind="coment.Text"></div>
-                            <div ng-bind="coment.Time"></div>
-                            <button class="btn btn-default" ng-click="btnDeleteComment(coment.Id, post.Id)" ng-if="coment.IsAuthor">Delete</button>
-
-                        </li>
-                    </ul>
-                    @if (HttpContext.Current.User.IsInRole("user"))
-                    {
-                        <div class="form-group">
-                            <form name="MessageForm{{post.Id}}">
-                                <label class="col-md-2 control-label" for="Comment">Comment</label>
-                                <textarea class="form-control" data-val="true" id="Message{{post.Id}}" name="Message{{post.Id}}" ng-model="post.newCommend" required> </textarea>
-                            </form>
-                            <button class="btn btn-default" ng-click="btnPostComment(post.Id)" ng-disabled="!MessageForm{{post.Id}}.$valid">Send</button>
-                        </div>
-                    }
-                </li>
-            </ul>
-            <button class="btn btn-default" ng-click="btnShowMore()">Show More</button>
-        </div>
+<div>
+    <div>
+        <div ng-view></div>
     </div>
 </div>

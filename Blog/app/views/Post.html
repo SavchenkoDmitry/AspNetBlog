@@ -1,0 +1,22 @@
+﻿<div>
+    <div ng-bind="post.Topic"></div>
+    <div ng-bind="post.Author"></div>
+    <div ng-bind="post.Text"></div>
+    <div ng-bind="post.Time"></div>
+    <ul>
+        <li ng-repeat="coment in post.Coments" name="Post{{post.Id}}.Comment{{coment.Id}}" id="Post{{post.Id}}.Comment{{coment.Id}}">
+            <div ng-bind="coment.Author"></div>
+            <div ng-bind="coment.Text"></div>
+            <div ng-bind="coment.Time"></div>
+            <button class="btn btn-default" ng-click="btnDeleteComment(coment.Id, post.Id)" ng-if="coment.IsAuthor">Delete</button>
+        </li>
+    </ul>
+
+    <div class="form-group" ng-show="IsUser">
+        <form name="MessageForm">
+            <label class="col-md-2 control-label" for="Comment">Comment</label>
+            <textarea class="form-control" data-val="true" id="Message" name="Message" ng-model="post.newCommend" required> </textarea>
+        </form>
+        <button class="btn btn-default" ng-click="btnPostComment(post.Id)" ng-disabled="!MessageForm.$valid">Send</button>
+    </div>
+</div>
