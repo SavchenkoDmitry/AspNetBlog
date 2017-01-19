@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section scripts {
+    <script src="~/app/app.js"></script>
+    <script src="~/app/controllers/contentController.js"></script>
+    <script src="~/app/controllers/postController.js"></script>
+    <script src="~/app/controllers/newPostController.js"></script>
+    <script src="~/app/services/blogService.js"></script>
+}
+<div>
+    <div>
+        <div ng-view></div>
+    </div>
+</div>

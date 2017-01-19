@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Blog.Services.Common;
-using Blog.ViewModels;
+using Blog.ViewModels.HomeViewModels;
+using Blog.ViewModels.AccountViewModels;
 
 namespace Blog.Services.Interfaces
 {

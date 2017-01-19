@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Data.Entity;
 using Blog.DAL.Identity;
+using Blog.DAL.Entities.Enums;
 using Blog.DAL.Entities;
 
 namespace Blog.DAL.EF

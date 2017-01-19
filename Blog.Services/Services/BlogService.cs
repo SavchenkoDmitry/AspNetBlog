@@ -11,8 +11,10 @@ using Blog.DAL.EF;
 using Blog.DAL.Repositories;
 using Blog.DAL.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Blog.ViewModels;
+using Blog.ViewModels.HomeViewModels;
 using System.Data.Entity;
+using Blog.DAL.Entities.Enums;
+using Blog.ViewModels.AccountViewModels;
 
 namespace Blog.Services.Services
 {

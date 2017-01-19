@@ -1,0 +1,35 @@
+﻿<div>
+    <div ng-show="ctrl.roles.IsAdmin">
+        <hr>
+        <button class="btn btn-default" ng-click="ctrl.CreateNewPost()"> New Post </button>
+    </div>
+
+    <div>
+        <hr>
+        <ui-select allow-clear="true" ng-model="ctrl.selectedTheme" theme="bootstrap">
+            <ui-select-match>
+                {{$select.selected}}
+            </ui-select-match>
+            <ui-select-choices repeat="t in ctrl.themes | filter: $select.search">
+                {{t}}
+            </ui-select-choices>
+        </ui-select>
+        <hr>
+        <p>Search text: <input type="text" ng-model="ctrl.filterText"></p>
+        <hr>
+        <button class="btn btn-default" ng-click="ctrl.ClearFilter()"> Clear Filter </button>
+    </div>
+
+    <div>        
+        <ul>
+            <li ng-repeat="post in ctrl.posts | filter: {Text:ctrl.filterText, Topic:ctrl.selectedTheme}" name="Post{{post.Id}}" id="Post{{post.Id}}" >
+                <div ng-bind="post.Topic"></div>
+                <div ng-bind="post.Author"></div>
+                <div ng-bind="ctrl.GetTextPreview(post.Text)"></div>
+                <div ng-bind="post.Time"></div>
+                <button class="btn btn-default" ng-click="ctrl.PostDetails(post.Id)">Details</button> <button ng-show="ctrl.roles.IsAdmin" class="btn btn-default" ng-click="ctrl.DeletePost(post.Id)">Delete</button>
+            </li>
+        </ul>
+        <button class="btn btn-default" ng-click="ctrl.ShowMore()">Show More</button>
+    </div>
+</div>

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,19 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommentViewModel.cs" />
-    <Compile Include="PostPreviewListViewModel.cs" />
-    <Compile Include="PostPreviewViewModel.cs" />
-    <Compile Include="PostViewModel.cs" />
+    <Compile Include="AccountViewModels\LoginViewModel.cs" />
+    <Compile Include="AccountViewModels\RegisterViewModel.cs" />
+    <Compile Include="HomeViewModels\CommentViewModel.cs" />
+    <Compile Include="HomeViewModels\PostPreviewListViewModel.cs" />
+    <Compile Include="HomeViewModels\PostPreviewViewModel.cs" />
+    <Compile Include="HomeViewModels\PostViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserViewModel.cs" />
-    <Compile Include="WriteMessageViewModels.cs" />
+    <Compile Include="AccountViewModels\UserViewModel.cs" />
+    <Compile Include="HomeViewModels\WriteMessageViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog.DAL\Blog.DAL.csproj">
       <Project>{c67a6319-7600-4d06-b421-bd9ed727d6ad}</Project>
       <Name>Blog.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

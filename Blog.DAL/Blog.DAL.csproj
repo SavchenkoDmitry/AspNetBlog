@@ -63,6 +63,7 @@
     <Compile Include="Entities\ApplicationRole.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\Enums\Theme.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />

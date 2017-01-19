@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Blog.DAL.Entities.Enums;
 
 namespace Blog.DAL.Entities
 {
-    public enum Theme
-    {
-        Other, Programming, Sports, Games, News
-    }
-
     public class Post
     {
         public int Id { get; set; }

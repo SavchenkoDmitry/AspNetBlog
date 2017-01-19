@@ -1,0 +1,22 @@
+﻿<div>
+    <hr>
+    <form name="NewPostForm">
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="Topic">Topic</label>  
+            <ui-select ng-model="ctrl.selectedTheme" theme="bootstrap" required>                
+                <ui-select-match>
+                    {{$select.selected}}
+                </ui-select-match>
+                <ui-select-choices repeat="t in ctrl.themes | filter: $select.search">
+                    {{t}}
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="Message">Message</label>
+            <textarea class="form-control" data-val="true" id="Message" name="Message" ng-model="ctrl.newPostText" required> </textarea>
+        </div>
+    </form>
+    <button class="btn btn-default" ng-click="ctrl.PostPost()" ng-disabled="!NewPostForm.$valid">Send</button>
+    <hr>
+</div>
