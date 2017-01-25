@@ -13,29 +13,27 @@
     export class PostController {
         static id = "postController";
         
-        service: BlogService;
         postId: string;        
-        post: Post;        
-        roles: Roles;
+        post: domain.Post;        
+        roles: domain.Roles;
         newComentText: string;
 
-        constructor($scope: IPostScope, $location: ng.ILocationService, blogService: BlogService, $routeParams: IRouteParams) {            
+        constructor($scope: IPostScope, $location: ng.ILocationService, private blogService: BlogService, $routeParams: IRouteParams) {            
             $scope.ctrl = this;
             this.postId = $routeParams.id;
-            this.service = blogService;
 
             if (this.postId !== 'undefined') {
-                blogService.GetPostById(this.postId).then((response) => this.post = response.data as Post, () => alert('Error'));
+                blogService.getPostById(this.postId).then((response) => this.post = response.data as domain.Post, () => alert('Error'));
             }
             else {
                 $location.path('/');
             }
-            this.service.GetUserStatus().then((response) => this.roles = response.data as Roles, () => alert('Error'));
+            this.blogService.getUserStatus().then((response) => this.roles = response.data as domain.Roles, () => alert('Error'));
         }
 
-        PostComment() {
+        postComment() {
             var obj = { "Id": this.post.Id, "Text": this.newComentText };            
-            this.service.PostMessage(obj, "AddComment").then((response) => {
+            this.blogService.postMessage(obj, "AddComment").then((response) => {
                 let responseData: any = response.data;
                 if (responseData.success) {
                     this.post.Coments.push(responseData.Content);
@@ -47,8 +45,8 @@
             }, () => alert('Error'));            
         }
 
-        DeleteComment(commentId: number) {
-            this.service.PostMessageWithId(commentId, "DeleteComment").then((response) => {
+        deleteComment(commentId: number) {
+            this.blogService.deleteMessageWithId(commentId, "DeleteComment").then((response) => {
                 if (response.data) {
                     for (var i = 0; i < this.post.Coments.length; i++) {
                         if (this.post.Coments[i].Id == commentId)

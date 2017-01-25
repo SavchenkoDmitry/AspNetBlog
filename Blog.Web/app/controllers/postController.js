@@ -5,21 +5,21 @@ var App;
     var PostController = (function () {
         function PostController($scope, $location, blogService, $routeParams) {
             var _this = this;
+            this.blogService = blogService;
             $scope.ctrl = this;
             this.postId = $routeParams.id;
-            this.service = blogService;
             if (this.postId !== 'undefined') {
-                blogService.GetPostById(this.postId).then(function (response) { return _this.post = response.data; }, function () { return alert('Error'); });
+                blogService.getPostById(this.postId).then(function (response) { return _this.post = response.data; }, function () { return alert('Error'); });
             }
             else {
                 $location.path('/');
             }
-            this.service.GetUserStatus().then(function (response) { return _this.roles = response.data; }, function () { return alert('Error'); });
+            this.blogService.getUserStatus().then(function (response) { return _this.roles = response.data; }, function () { return alert('Error'); });
         }
-        PostController.prototype.PostComment = function () {
+        PostController.prototype.postComment = function () {
             var _this = this;
             var obj = { "Id": this.post.Id, "Text": this.newComentText };
-            this.service.PostMessage(obj, "AddComment").then(function (response) {
+            this.blogService.postMessage(obj, "AddComment").then(function (response) {
                 var responseData = response.data;
                 if (responseData.success) {
                     _this.post.Coments.push(responseData.Content);
@@ -30,9 +30,9 @@ var App;
                 }
             }, function () { return alert('Error'); });
         };
-        PostController.prototype.DeleteComment = function (commentId) {
+        PostController.prototype.deleteComment = function (commentId) {
             var _this = this;
-            this.service.PostMessageWithId(commentId, "DeleteComment").then(function (response) {
+            this.blogService.deleteMessageWithId(commentId, "DeleteComment").then(function (response) {
                 if (response.data) {
                     for (var i = 0; i < _this.post.Coments.length; i++) {
                         if (_this.post.Coments[i].Id == commentId)

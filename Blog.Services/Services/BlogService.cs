@@ -14,19 +14,15 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Blog.ViewModels.HomeViewModels;
 using System.Data.Entity;
 using Blog.DAL.Entities.Enums;
-using Blog.ViewModels.AccountViewModels;
 
 namespace Blog.Services.Services
 {
     public class BlogService : IBlogService
     {
         const int PostsInOnePage = 10;
-        const string StandartRole = "user";
-
 
         private ApplicationContext db;
         private ApplicationUserManager userManager;
-        private ApplicationRoleManager roleManager;
         private PostRepository postRep;
         private CommentRepository commentRep;
 
@@ -34,7 +30,6 @@ namespace Blog.Services.Services
         {
             db = new ApplicationContextFactory().Create();
             userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
-            roleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(db));
             postRep = new PostRepository(db);
             commentRep = new CommentRepository(db);
             db.Posts.Load();
@@ -45,43 +40,7 @@ namespace Blog.Services.Services
         {
             return Enum.GetNames(typeof(Theme));
         }
-
-        #region user
-        public async Task<OperationDetails> CreateUser(UserViewModel userVM)
-        {
-            ApplicationUser user = await userManager.FindByEmailAsync(userVM.Email);
-            if (user == null)
-            {
-                user = new ApplicationUser { Email = userVM.Email, UserName = userVM.Email };
-                await userManager.CreateAsync(user, userVM.Password);
-                await userManager.AddToRoleAsync(user.Id, userVM.Role);
-                if (userVM.Role != StandartRole)
-                {
-                    await userManager.AddToRoleAsync(user.Id, StandartRole);
-                }
-                await db.SaveChangesAsync();
-                return new OperationDetails(true, "Register successful", "");
-
-            }
-            else
-            {
-                return new OperationDetails(false, "User with this email already exists", "Email");
-            }
-        }
-
-        public async Task<ClaimsIdentity> Authenticate(UserViewModel userVM)
-        {
-            ClaimsIdentity claim = null;
-            // находим пользователя
-            ApplicationUser user = await userManager.FindAsync(userVM.Email, userVM.Password);
-            // авторизуем его и возвращаем объект ClaimsIdentity
-            if (user != null)
-                claim = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            return claim;
-        }
-        #endregion
-
-
+        
         #region post
         private PostViewModel GetDPostViewModel(Post p, string userId)
         {
@@ -144,7 +103,7 @@ namespace Blog.Services.Services
                 commentRep.Delete(c);
             }
             postRep.Delete(p);
-            db.SaveChangesAsync();
+            db.SaveChanges();
         }
 
         public List<PostPreviewViewModel> GetNextPosts(string userId, int skip)
@@ -175,7 +134,7 @@ namespace Blog.Services.Services
                 return false;
             }
             commentRep.Delete(c);
-            db.SaveChangesAsync();
+            db.SaveChanges();
             return true;
         }
         private CommentViewModel GetCommentViewModel(Comment c, string userId)
@@ -215,7 +174,6 @@ namespace Blog.Services.Services
                 if (disposing)
                 {
                     userManager.Dispose();
-                    roleManager.Dispose();
                     postRep.Dispose();
                     commentRep.Dispose();
                 }

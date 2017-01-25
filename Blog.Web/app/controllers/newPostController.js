@@ -5,17 +5,17 @@ var App;
     var NewPostController = (function () {
         function NewPostController($scope, $location, blogService) {
             var _this = this;
+            this.$location = $location;
+            this.blogService = blogService;
             $scope.ctrl = this;
-            this.location = $location;
-            this.service = blogService;
-            this.service.GetThemes().then(function (response) { return _this.themes = response.data; }, function () { return alert('Error'); });
+            this.blogService.getThemes().then(function (response) { return _this.themes = response.data; }, function () { return alert('Error'); });
         }
-        NewPostController.prototype.PostPost = function () {
+        NewPostController.prototype.postPost = function () {
             var _this = this;
             var obj = { "Topic": this.selectedTheme, "Text": this.newPostText };
-            this.service.PostMessage(obj, "AddPost").then(function (response) {
+            this.blogService.postMessage(obj, "AddPost").then(function (response) {
                 if (response.data) {
-                    _this.location.path('/');
+                    _this.$location.path('/');
                 }
                 else {
                     alert('Failed');

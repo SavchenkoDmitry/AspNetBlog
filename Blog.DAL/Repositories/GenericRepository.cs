@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Blog.DAL.Interfaces;
 using Blog.DAL.EF;
-using System.Data.Entity;
 
 namespace Blog.DAL.Repositories
 {
-    public abstract class GenericRepository<T> :
-        IGenericRepository<T> where T : class
+    public abstract class GenericRepository<T> where T : class
     {
         public GenericRepository(ApplicationContext context)
         {

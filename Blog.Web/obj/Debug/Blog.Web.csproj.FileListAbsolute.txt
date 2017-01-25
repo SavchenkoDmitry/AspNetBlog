@@ -18,7 +18,6 @@ S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Blog.DAL.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Blog.Services.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Blog.ViewModels.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\EntityFramework.dll
-S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\EntityFramework.SqlServer.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.AspNet.Identity.Core.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.AspNet.Identity.Owin.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -31,7 +30,6 @@ S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.We
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Newtonsoft.Json.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Ninject.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Ninject.Web.Common.dll
-S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Ninject.Web.Mvc.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Owin.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Web.Helpers.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Web.Mvc.dll
@@ -47,7 +45,6 @@ S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Blog.DAL.pdb
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Blog.Services.pdb
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Blog.ViewModels.pdb
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\EntityFramework.xml
-S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\EntityFramework.SqlServer.xml
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.AspNet.Identity.Core.xml
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.AspNet.Identity.Owin.xml
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
@@ -58,7 +55,6 @@ S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.Ow
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.Owin.Security.OAuth.xml
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Ninject.xml
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Ninject.Web.Common.xml
-S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Ninject.Web.Mvc.xml
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Web.Helpers.xml
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Web.Mvc.xml
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Web.Optimization.xml
@@ -72,3 +68,11 @@ S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Microsoft.As
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\obj\Debug\Blog.Web.csprojResolveAssemblyReference.cache
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\obj\Debug\Blog.Web.dll
 S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\obj\Debug\Blog.Web.pdb
+S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Net.Http.Formatting.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Web.Http.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Web.Http.WebHost.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Net.Http.Formatting.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Web.Http.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\System.Web.Http.WebHost.xml
+S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Ninject.Web.WebApi.dll
+S:\Программирование\VS\Blog\AspNetBlog\Blog.Web\bin\Ninject.Web.WebApi.xml

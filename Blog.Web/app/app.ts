@@ -9,8 +9,6 @@
     
     var routeFunc = function ($locationProvider, $routeProvider) {
 
-
-
         $routeProvider.when('/',
             {
                 templateUrl: 'app/views/Content.html',
@@ -31,8 +29,6 @@
                 templateUrl: '/app/views/Post.html',
                 controller: 'postController'
             });
-
-
 
         $routeProvider.otherwise({ redirectTo: '/' });
     }

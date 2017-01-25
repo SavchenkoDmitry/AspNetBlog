@@ -10,8 +10,6 @@ namespace Blog.Services.Interfaces
 {
     public interface IBlogService : IDisposable
     {
-        Task<OperationDetails> CreateUser(UserViewModel userVM);
-        Task<ClaimsIdentity> Authenticate(UserViewModel userVM);
         string[] GetThemes();
         PostViewModel AddPost(string topic, string text, string userId);
         void DeletePost(int id);

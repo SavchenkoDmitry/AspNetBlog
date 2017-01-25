@@ -13,11 +13,11 @@ namespace Blog.Web.Controllers
 {
     public class AccountController : Controller
     {
-        public AccountController(IBlogService blogServ)
+        public AccountController(IAccountService accServ)
         {
-            BlogService = blogServ;
+            AccService = accServ;
         }
-        private IBlogService BlogService;
+        private IAccountService AccService;
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -39,7 +39,7 @@ namespace Blog.Web.Controllers
             if (ModelState.IsValid)
             {
                 UserViewModel userVM = new UserViewModel { Email = model.Email, Password = model.Password };
-                ClaimsIdentity claim = await BlogService.Authenticate(userVM);
+                ClaimsIdentity claim = await AccService.Authenticate(userVM);
                 if (claim == null)
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль.");
@@ -80,7 +80,7 @@ namespace Blog.Web.Controllers
                     Password = model.Password,
                     Role = "user"
                 };
-                OperationDetails operationDetails = await BlogService.CreateUser(userVM);
+                OperationDetails operationDetails = await AccService.CreateUser(userVM);
                 if (operationDetails.Succedeed)
                     return View("SuccessRegister");
                 else

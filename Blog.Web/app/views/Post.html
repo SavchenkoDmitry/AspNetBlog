@@ -8,7 +8,7 @@
             <div ng-bind="coment.Author"></div>
             <div ng-bind="coment.Text"></div>
             <div ng-bind="coment.Time"></div>
-            <button class="btn btn-default" ng-click="ctrl.DeleteComment(coment.Id)" ng-if="coment.IsAuthor">Delete</button>
+            <button class="btn btn-default" ng-click="ctrl.deleteComment(coment.Id)" ng-if="coment.IsAuthor">Delete</button>
         </li>
     </ul>
 
@@ -17,6 +17,6 @@
             <label class="col-md-2 control-label" for="Comment">Comment</label>
             <textarea class="form-control" data-val="true" id="Message" name="Message" ng-model="ctrl.newComentText" required> </textarea>
         </form>
-        <button class="btn btn-default" ng-click="ctrl.PostComment()" ng-disabled="!MessageForm.$valid">Send</button>
+        <button class="btn btn-default" ng-click="ctrl.postComment()" ng-disabled="!MessageForm.$valid">Send</button>
     </div>
 </div>

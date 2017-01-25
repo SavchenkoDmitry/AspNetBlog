@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Blog.DAL.Interfaces;
 using Blog.DAL.Entities;
 using Blog.DAL.EF;
 using System.Data.Entity;
 
 namespace Blog.DAL.Repositories
 {
-    public class PostRepository : GenericRepository<Post>, IPostRepository
+    public class PostRepository : GenericRepository<Post>
     {
         public PostRepository(ApplicationContext c) : base(c)
         { }

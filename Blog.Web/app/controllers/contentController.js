@@ -5,18 +5,18 @@ var App;
     var ContentController = (function () {
         function ContentController($scope, $location, blogService) {
             var _this = this;
+            this.$location = $location;
+            this.blogService = blogService;
             $scope.ctrl = this;
-            this.location = $location;
-            this.service = blogService;
-            this.service.GetMessages(0).then(function (response) { return _this.posts = response.data; }, function () { return alert('Error'); });
-            this.service.GetThemes().then(function (response) { return _this.themes = response.data; }, function () { return alert('Error'); });
-            this.service.GetUserStatus().then(function (response) { return _this.roles = response.data; }, function () { return alert('Error'); });
+            this.blogService.getMessages(0).then(function (response) { return _this.posts = response.data; }, function () { return alert('Error'); });
+            this.blogService.getThemes().then(function (response) { return _this.themes = response.data; }, function () { return alert('Error'); });
+            this.blogService.getUserStatus().then(function (response) { return _this.roles = response.data; }, function () { return alert('Error'); });
         }
-        ContentController.prototype.ShowMore = function () {
+        ContentController.prototype.showMore = function () {
             var _this = this;
-            this.service.GetMessages(this.posts.length).then(function (response) { return Array.prototype.push.apply(_this.posts, response.data); }, function () { return alert('Error'); });
+            this.blogService.getMessages(this.posts.length).then(function (response) { return Array.prototype.push.apply(_this.posts, response.data); }, function () { return alert('Error'); });
         };
-        ContentController.prototype.GetTextPreview = function (text) {
+        ContentController.prototype.getTextPreview = function (text) {
             if (text.length > 30) {
                 return text.slice(0, 27) + "...";
             }
@@ -24,22 +24,22 @@ var App;
                 return text;
             }
         };
-        ContentController.prototype.ClearFilter = function () {
+        ContentController.prototype.clearFilter = function () {
             this.filterText = "";
             this.selectedTheme = "";
         };
         ;
-        ContentController.prototype.CreateNewPost = function () {
-            this.location.path('/newpost');
+        ContentController.prototype.createNewPost = function () {
+            this.$location.path('/newpost');
         };
         ;
-        ContentController.prototype.PostDetails = function (id) {
-            this.location.path('/post/' + id);
+        ContentController.prototype.postDetails = function (id) {
+            this.$location.path('/post/' + id);
         };
         ;
-        ContentController.prototype.DeletePost = function (postId) {
+        ContentController.prototype.deletePost = function (postId) {
             var _this = this;
-            this.service.PostMessageWithId(postId, "DeletePost").then(function (response) {
+            this.blogService.deleteMessageWithId(postId, "DeletePost").then(function (response) {
                 for (var i = 0; i < _this.posts.length; i++) {
                     if (_this.posts[i].Id == postId)
                         _this.posts.splice(i, 1);

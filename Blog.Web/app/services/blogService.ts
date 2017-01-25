@@ -2,10 +2,6 @@
 
     var app = angular.module("blogApp");
 
-    export interface IBlogService {
-        GetMessages(): number;
-    }
-
     export class BlogService 
     {        
         static id = "blogService";
@@ -15,23 +11,23 @@
             this.http = $http;
         }
 
-        GetMessages(count: number) {           
-            return this.$http.get("/Home/GetPosts?count=" + count);
+        getMessages(count: number) {           
+            return this.$http.get("/api/blog/GetPosts?count=" + count);
         }
-        GetPostById(id: string) {
-            return this.$http.get("/Home/GetPost?id=" + id);
+        getPostById(id: string) {
+            return this.$http.get("/api/blog/GetPost?id=" + id);
         }
-        PostMessage(obj: any, method: string) {
-            return this.$http.post("/Home/" + method, obj);
+        postMessage(obj: any, method: string) {
+            return this.$http.post("/api/blog/" + method, obj);
         }
-        PostMessageWithId(id: number, method: string) {
-            return this.$http.post("/Home/" + method + "/" + id, "");
+        deleteMessageWithId(id: number, method: string) {
+            return this.$http.delete("/api/blog/" + method + "/" + id);
         }
-        GetThemes() {
-            return this.$http.get("/Home/GetThemes");
+        getThemes() {
+            return this.$http.get("/api/blog/GetThemes");
         }
-        GetUserStatus() {
-            return this.$http.get("/Home/GetUserStatus");
+        getUserStatus() {
+            return this.$http.get("/api/blog/GetUserStatus");
         }
 
     }

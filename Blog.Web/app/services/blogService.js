@@ -6,23 +6,23 @@ var App;
             this.$http = $http;
             this.http = $http;
         }
-        BlogService.prototype.GetMessages = function (count) {
-            return this.$http.get("/Home/GetPosts?count=" + count);
+        BlogService.prototype.getMessages = function (count) {
+            return this.$http.get("/api/blog/GetPosts?count=" + count);
         };
-        BlogService.prototype.GetPostById = function (id) {
-            return this.$http.get("/Home/GetPost?id=" + id);
+        BlogService.prototype.getPostById = function (id) {
+            return this.$http.get("/api/blog/GetPost?id=" + id);
         };
-        BlogService.prototype.PostMessage = function (obj, method) {
-            return this.$http.post("/Home/" + method, obj);
+        BlogService.prototype.postMessage = function (obj, method) {
+            return this.$http.post("/api/blog/" + method, obj);
         };
-        BlogService.prototype.PostMessageWithId = function (id, method) {
-            return this.$http.post("/Home/" + method + "/" + id, "");
+        BlogService.prototype.deleteMessageWithId = function (id, method) {
+            return this.$http.delete("/api/blog/" + method + "/" + id);
         };
-        BlogService.prototype.GetThemes = function () {
-            return this.$http.get("/Home/GetThemes");
+        BlogService.prototype.getThemes = function () {
+            return this.$http.get("/api/blog/GetThemes");
         };
-        BlogService.prototype.GetUserStatus = function () {
-            return this.$http.get("/Home/GetUserStatus");
+        BlogService.prototype.getUserStatus = function () {
+            return this.$http.get("/api/blog/GetUserStatus");
         };
         BlogService.id = "blogService";
         return BlogService;

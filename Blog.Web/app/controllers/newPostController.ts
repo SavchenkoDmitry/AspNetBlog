@@ -7,25 +7,21 @@
     }
     export class NewPostController {
         static id = "newPostController";
-
-        service: BlogService;
+        
         newPostText: string;
         themes: string[];
         selectedTheme: string;
-        location: ng.ILocationService;
 
-        constructor($scope: INewPostScope, $location: ng.ILocationService, blogService: BlogService) {
+        constructor($scope: INewPostScope, private $location: ng.ILocationService, private blogService: BlogService) {
             $scope.ctrl = this;
-            this.location = $location;
-            this.service = blogService;
-            this.service.GetThemes().then((response) => this.themes = response.data as string[], () => alert('Error'));
+            this.blogService.getThemes().then((response) => this.themes = response.data as string[], () => alert('Error'));
         }
 
-        PostPost() {
+        postPost() {
             var obj = { "Topic": this.selectedTheme, "Text": this.newPostText }           
-            this.service.PostMessage(obj, "AddPost").then((response) => {
+            this.blogService.postMessage(obj, "AddPost").then((response) => {
                 if (response.data) {
-                    this.location.path('/');
+                    this.$location.path('/');
                 }
                 else {
                     alert('Failed');
